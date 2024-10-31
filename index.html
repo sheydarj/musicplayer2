@@ -10,8 +10,6 @@
 </head>
 
 <body>
-    <audio id="kiMigireJato" src="./music/Ki Migire Jato Roo Tanam Kaboodi Boosehato.mp3"></audio>
-
     <section class="bg-[#ff564b] h-screen w-screen ">
 
         <div class="relative w-[400px] m-auto">
@@ -33,34 +31,36 @@
             </div>
             <div id="txt" class="bg-gray-800 h-[200px] w-[400px] m-auto ">
                 <div id="music"
-                    class="absolute top-[57%] left-[35%] text-center pt-16 transition-all duration-200 ease-linear ">
+                    class="absolute top-[53%] left-[5%] text-center pt-16 transition-all duration-200 ease-linear ">
                     <h2 class="text-white text-xl "> music name </h2>
                     <p class="text-sm text-[#777] "> music details </p>
                 </div>
             </div>
             <div class="bg-gray-800 w-[400px] m-auto ">
                 <div id="play" class="flex *:text-white justify-center items-center">
-                    <i class="text-3xl mr-8 bi bi-rewind-fill"></i>
-                    <i id="playBtn" class="text-4xl bi bi-play-fill"></i>
-                    <!-- <i class="bi bi-pause-fill"></i> -->
-                    <i class="text-3xl ml-8 bi bi-fast-forward-fill"></i>
+                    <i id="back" class="text-3xl mr-8 bi bi-rewind-fill"></i>
+                    <i id="playBtn" class="flex text-4xl bi bi-play-fill"></i>
+                    <i id="pause" class=" hidden text-4xl bi bi-pause-fill"></i>
+                    <i id="next" class="text-3xl ml-8 bi bi-fast-forward-fill"></i>
                 </div>
                 <div id="icon" class="flex *:text-[#6d6d6d] justify-around *:text-xl mt-20 pb-8">
-                    <i class="bi bi-suit-heart"></i>
-                    <i class="bi bi-shuffle"></i>
-                    <i class="bi bi-arrow-repeat"></i>
-                    <i class="bi bi-three-dots"></i>
+                    <i id="heart" class="bi bi-suit-heart"></i>
+                    <i id="shuffle" class="bi bi-shuffle"></i>
+                    <i id="repeat" class="bi bi-arrow-repeat"></i>
+                    <i id="dots" class="bi bi-three-dots"></i>
                 </div>
             </div>
             <div>
                 <ul id="ul" class=" bg-black m-auto *:text-white w-[400px] hidden *:h-16 ">
-                    <li class="w-full flex justify-center items-center border-b-2" onclick="kiMigireJato()">Ki Migire
+                    <!-- <li class="w-full flex justify-center items-center border-b-2" onclick="kiMigireJato()"> <audio
+                            id="kiMigireJato" src="./music/Ki Migire Jato Roo Tanam Kaboodi Boosehato.mp3"></audio>
+                        Ki Migire
                         Jato</li>
                     <li class="w-full flex justify-center items-center border-b-2">danial</li>
                     <li class="w-full flex justify-center items-center border-b-2">sheyda</li>
                     <li class="w-full flex justify-center items-center border-b-2">tara</li>
                     <li class="w-full flex justify-center items-center border-b-2">danial</li>
-                    <li class="w-full flex justify-center items-center">sheyda</li>
+                    <li class="w-full flex justify-center items-center">sheyda</li> -->
 
                 </ul>
             </div>
