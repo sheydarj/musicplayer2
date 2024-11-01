@@ -133,40 +133,30 @@ function playPauseBtn() {
 let forwardBtn = document.getElementById('forward');
 let rewindBtn = document.getElementById('rewind');
 forwardBtn.addEventListener('click', () => {
-    // if (playing) {
-    //     audios.forEach((audio) => {
-    //         audio.pause()
-    //     })
-    // }
-    ///forward btn
-   
-        audios[musicIndex].pause()
-        if (musicIndex + 1 < audios.length) {
+    audios[musicIndex].pause()
+    if (musicIndex + 1 < audios.length) {
         musicIndex++;
     } else {
         musicIndex = 0;
-        }
-        if(playing ){
+    }
+    if (playing) {
         audios[musicIndex].play()
-        }
-        document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
-   
+    }
+    document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
 })
 ///frwrd btn end
 ///backward btn
 rewindBtn.addEventListener('click', () => {
-   
-        audios[musicIndex].pause()
-        if (musicIndex < audios.length && musicIndex > 0) {
+    audios[musicIndex].pause()
+    if (musicIndex < audios.length && musicIndex > 0) {
         musicIndex--;
-     } else {
-            musicIndex = audios.length - 1;
-        }
-     
-        if (playing ){audios[musicIndex].play()}
-  
-        document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
-    
+    } else {
+        musicIndex = audios.length - 1;
+    }
+
+    if (playing) { audios[musicIndex].play() }
+
+    document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
 })
 // end of forward && rewind CONTROLLS ///////////////////////////////
 
@@ -177,6 +167,8 @@ audioList.forEach((li, index) => {
         play.classList.toggle('hidden')
         icon.classList.toggle('hidden')
         // end of hide ul list
+        playBtn.style.display = 'none';
+        pauseBtn.style.display = 'block';
         audios[musicIndex].pause()
         musicIndex = index;
         audios[index].play()
