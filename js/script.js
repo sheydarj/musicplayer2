@@ -7,8 +7,9 @@ const pic = document.getElementById('pic')
 const music = document.getElementById('music')
 const h2 = document.querySelector('#music>h2')
 const txt = document.getElementById('txt')
-const audio = document.getElementById('audio')
-// const playBtn = document.getElementById('playBtn')
+// const audio = document.getElementById('audio')
+const timer = document.getElementById('playing-time')
+const duration = document.getElementById('music-duration')
 
 let mod = true;
 
@@ -105,21 +106,23 @@ const audioList = document.querySelectorAll('#ul>li')
 
 
 let playing = false;
-let playBtn = document.getElementById('play-btn');
-let pauseBtn = document.getElementById('pause-btn');
+const playBtn = document.getElementById('play-btn');
+const pauseBtn = document.getElementById('pause-btn');
 // end of second way ///////////////////////////////////////////////////////////////////////////////
 
 // play && pause /////////////////////////////////////
 let musicIndex = 0;
 function playPauseBtn() {
-
     if (audios[musicIndex].paused) {
+        startInterval()
+
         audios[musicIndex].play()
         playBtn.style.display = 'none';
         pauseBtn.style.display = 'block';
         document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
     } else {
         audios[musicIndex].pause()
+        clearInterval(timerInterval)
         playBtn.style.display = 'block';
         pauseBtn.style.display = 'none';
     }
@@ -168,8 +171,21 @@ rewindBtn.addEventListener('click', () => {
 })
 // end of forward && rewind CONTROLLS ///////////////////////////////
 
+let timerInterval;
 audioList.forEach((li, index) => {
     li.addEventListener('click', (e) => {
+        let audio = document.getElementsByClassName('audio')
+        changeAudioSource(audio.item(index))
+        resetTimer();
+        let audioDuration = audio.item(index).duration
+
+
+        getMinutes(audioDuration)
+        startCounter(audioDuration)
+        // console.log('my audioooooooo', audio.item(index).buffered.start(0.2))
+
+        // Timer.innerHTML = audioDuration
+
         // hide ul list
         ul.classList.toggle('hidden')
         play.classList.toggle('hidden')
@@ -183,3 +199,66 @@ audioList.forEach((li, index) => {
         // playPauseBtn()
     })
 })
+
+
+function getMinutes(s) {
+    const minutes = Math.floor(s / 60)
+    console.log('minutes ', minutes)
+    const second = Math.floor((((s / 60) - minutes) * 60))
+    console.log('second ', second)
+    duration.innerText = `${minutes.toString()}:${second.toString()}`
+
+}
+
+
+function startCounter(s) {
+
+    let secondsElapsed = 0;
+    timer.innerText = ""
+    playBtn.style.display = 'none';
+    pauseBtn.style.display = 'block';
+    timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const minutes = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const seconds = String(secondsElapsed % 60).padStart(2, '0');
+        timer.innerText = `${minutes}:${seconds}`;
+
+        // Stop the timer when audio ends
+        if (secondsElapsed >= s) {
+            clearInterval(timerInterval);
+            audio.pause();
+        }
+    }, 1000);
+
+
+}
+
+function startInterval() {
+    timerInterval = setInterval(() => {
+        let current = audios[musicIndex].currentTime.toFixed(0)
+        const minutes = String(Math.floor(current / 60)).padStart(2, '0');
+        const seconds = String(current % 60).padStart(2, '0');
+        timer.innerText = `${minutes}:${seconds}`;
+    }, 1000)
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    timer.innerText = '00:00'; // Reset display
+}
+
+function changeAudioSource(newSource) {
+    newSource.currentTime = 0
+    resetTimer(); // Reset timer for the new audio
+}
+
+
+window.onload = function () {
+    let audio = document.getElementsByClassName('audio')
+    console.log("audioeeeee1111", audio)
+    document.getElementById('music-name').innerHTML = audio.item(0).dataset.name;
+    getMinutes(audio.item(0).duration)
+    // addItem(item.title, item.src, item.id)
+
+
+}
