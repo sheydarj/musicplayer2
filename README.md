@@ -1,6 +1,6 @@
 # musicplayer
 
-![img1](https://github.com/user-attachments/assets/fab7b6cd-7c77-4603-bdde-f13a76132a64)
+![img1](https://github.com/Screenshot 2024-11-02 at 01.08.57.png)
 
 
 ![Alt text](Screenshot 2024-11-02 at 01.08.57.png)
