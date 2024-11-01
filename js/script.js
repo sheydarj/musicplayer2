@@ -7,7 +7,6 @@ const pic = document.getElementById('pic')
 const music = document.getElementById('music')
 const h2 = document.querySelector('#music>h2')
 const txt = document.getElementById('txt')
-// const audio = document.getElementById('audio')
 const timer = document.getElementById('playing-time')
 const duration = document.getElementById('music-duration')
 
@@ -36,74 +35,9 @@ menu.addEventListener('click', () => {
     icon.classList.toggle('hidden')
 
 })
-
-
-//  first way ///////////////////////////////////////////////////////////////////////////////
-
-// let audios = document.querySelectorAll('audio');
-
-// function kiMigireJato() {
-//     if (document.getElementById('kiMigireJato').paused) {
-//         audios.forEach((audio)=>{
-//             audio.pause()
-//         })
-//         document.getElementById('kiMigireJato').play()
-//     } else {
-//         document.getElementById('kiMigireJato').pause()
-//     }
-// }
-
-// function MonoPlay() {
-//     if (document.getElementById('MonoPlay').paused) {
-//         audios.forEach((audio)=>{
-//             audio.pause()
-//         })
-//         document.getElementById('MonoPlay').play()
-//     } else {
-//         document.getElementById('MonoPlay').pause()
-//     }
-// }
-
-// function EmmaPeters() {
-//     if (document.getElementById('EmmaPeters').paused) {
-//         audios.forEach((audio)=>{
-//             audio.pause()
-//         })
-//         document.getElementById('EmmaPeters').play()
-//     } else {
-//         document.getElementById('EmmaPeters').pause()
-//     }
-// }
-
-// function Nf() {
-//     if (document.getElementById('Nf').paused) {
-//         audios.forEach((audio)=>{
-//             audio.pause()
-//         })
-//         document.getElementById('Nf').play()
-//     } else {
-//         document.getElementById('Nf').pause()
-//     }
-// }
-// end of first way ///////////////////////////////////////////////////////////////////////////////
-
 // second way ///////////////////////////////////////////////////////////////////////////////
 let audios = document.querySelectorAll('audio');
 const audioList = document.querySelectorAll('#ul>li')
-// audioList.forEach((li, index) => {
-//     li.addEventListener('click', (e) => {
-//         if (audios[index].paused) {
-//             audios.forEach((audio) => {
-//                 audio.pause()
-//             })
-//             audios[index].play()
-//             document.getElementById('music-name').innerHTML = audios[index].dataset.name;
-//         } else {
-//             audios[index].pause()
-//         }
-//     })
-// })
-
 
 let playing = false;
 const playBtn = document.getElementById('play-btn');
@@ -115,16 +49,17 @@ let musicIndex = 0;
 function playPauseBtn() {
     if (audios[musicIndex].paused) {
         startInterval()
-
         audios[musicIndex].play()
         playBtn.style.display = 'none';
         pauseBtn.style.display = 'block';
         document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
+        playing = true;
     } else {
         audios[musicIndex].pause()
         clearInterval(timerInterval)
         playBtn.style.display = 'block';
         pauseBtn.style.display = 'none';
+        playing = false;
     }
 }
 // end of play && pause /////////////////////////////////////
@@ -134,40 +69,61 @@ function playPauseBtn() {
 let forwardBtn = document.getElementById('forward');
 let rewindBtn = document.getElementById('rewind');
 forwardBtn.addEventListener('click', () => {
-    // if (playing) {
-    //     audios.forEach((audio) => {
-    //         audio.pause()
-    //     })
-    // }
-    if (musicIndex + 1 < audios.length) {
+
+    if (playing && musicIndex + 1 < audios.length) {
         audios[musicIndex].pause()
         musicIndex++
-        console.log(musicIndex);
         audios[musicIndex].play()
+        getMinutes(audios[musicIndex].duration)
         playing = true;
-        document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
-    } else {
+    } else if (!playing && musicIndex + 1 < audios.length) {
         audios[musicIndex].pause()
-        musicIndex = 0;
-        audios[musicIndex].play()
-        playing = true;
-        document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
+        getMinutes(audios[musicIndex].duration)
+        musicIndex++
+        playing = false;
+    } else {
+        if (playing) {
+            audios[musicIndex].pause()
+            musicIndex = 0;
+            audios[musicIndex].play()
+            getMinutes(audios[musicIndex].duration)
+            playing = true;
+        } else {
+            audios[musicIndex].pause()
+            getMinutes(audios[musicIndex].duration)
+            musicIndex = 0;
+            playing = false;
+        }
     }
+    document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
 })
 rewindBtn.addEventListener('click', () => {
-    if (musicIndex < audios.length && musicIndex > 0) {
+    if (musicIndex < audios.length && musicIndex > 0 && playing) {
         audios[musicIndex].pause()
         musicIndex--
         audios[musicIndex].play()
+        getMinutes(audios[musicIndex].duration)
         playing = true;
-        document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
-    } else {
+    } else if (musicIndex < audios.length && musicIndex > 0 && !playing) {
         audios[musicIndex].pause()
-        musicIndex = audios.length - 1;
-        audios[musicIndex].play()
-        playing = true;
-        document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
+        getMinutes(audios[musicIndex].duration)
+        musicIndex--
+        playing = false;
+    } else {
+        if (playing) {
+            audios[musicIndex].pause()
+            musicIndex = audios.length - 1;
+            audios[musicIndex].play()
+            getMinutes(audios[musicIndex].duration)
+            playing = true;
+        } else {
+            audios[musicIndex].pause()
+            getMinutes(audios[musicIndex].duration)
+            musicIndex = audios.length - 1;
+            playing = false;
+        }
     }
+    document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
 })
 // end of forward && rewind CONTROLLS ///////////////////////////////
 
@@ -178,14 +134,8 @@ audioList.forEach((li, index) => {
         changeAudioSource(audio.item(index))
         resetTimer();
         let audioDuration = audio.item(index).duration
-
-
         getMinutes(audioDuration)
         startCounter(audioDuration)
-        // console.log('my audioooooooo', audio.item(index).buffered.start(0.2))
-
-        // Timer.innerHTML = audioDuration
-
         // hide ul list
         ul.classList.toggle('hidden')
         play.classList.toggle('hidden')
@@ -203,9 +153,7 @@ audioList.forEach((li, index) => {
 
 function getMinutes(s) {
     const minutes = Math.floor(s / 60)
-    console.log('minutes ', minutes)
     const second = Math.floor((((s / 60) - minutes) * 60))
-    console.log('second ', second)
     duration.innerText = `${minutes.toString()}:${second.toString()}`
 
 }
@@ -243,18 +191,17 @@ function startInterval() {
 
 function resetTimer() {
     clearInterval(timerInterval);
-    timer.innerText = '00:00'; 
+    timer.innerText = '00:00';
 }
 
 function changeAudioSource(newSource) {
     newSource.currentTime = 0
-    resetTimer(); 
+    resetTimer();
 }
 
 
 window.onload = function () {
     let audio = document.getElementsByClassName('audio')
-    console.log("audioeeeee1111", audio)
     document.getElementById('music-name').innerHTML = audio.item(0).dataset.name;
     getMinutes(audio.item(0).duration)
 
