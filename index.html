@@ -10,10 +10,12 @@
 </head>
 
 <body>
-    <audio class="audio" id="kiMigireJato" src="./music/Ki Migire Jato Roo Tanam Kaboodi Boosehato.mp3"></audio>
-    <audio class="audio" id="MonoPlay" src="./music/MonoPlay - Trust Me (Original Mix).mp3"></audio>
-    <audio class="audio" id="EmmaPeters" src="./music/Emma-Peters-Cocaina(320).mp3"></audio>
-    <audio class="audio" id="Nf" src="./music/Nf.mp3"></audio>
+    <audio data-name="Ki Migire Jato" class="audio" id="kiMigireJato"
+        src="./music/Ki Migire Jato Roo Tanam Kaboodi Boosehato.mp3"></audio>
+    <audio data-name="MonoPlay" class="audio" id="MonoPlay"
+        src="./music/MonoPlay - Trust Me (Original Mix).mp3"></audio>
+    <audio data-name="Emma-Peters" class="audio" id="EmmaPeters" src="./music/Emma-Peters-Cocaina(320).mp3"></audio>
+    <audio data-name="Nf" class="audio" id="Nf" src="./music/Nf.mp3"></audio>
 
     <section class="bg-[#ff564b] h-screen w-screen ">
 
@@ -37,7 +39,7 @@
             <div id="txt" class="bg-gray-800 h-[200px] w-[400px] m-auto ">
                 <div id="music"
                     class="absolute top-[57%] left-[35%] text-center pt-16 transition-all duration-200 ease-linear ">
-                    <h2 class="text-white text-xl "> music name </h2>
+                    <h2 id="music-name" class="text-white text-xl "> music name </h2>
                     <p class="text-sm text-[#777] "> music details </p>
                 </div>
             </div>

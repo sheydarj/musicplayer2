@@ -99,6 +99,7 @@ audioList.forEach((li, index) => {
                 audio.pause()
             })
             audios[index].play()
+            document.getElementById('music-name').innerHTML = audios[index].dataset.name;
         } else {
             audios[index].pause()
         }
