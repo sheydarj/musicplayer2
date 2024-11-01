@@ -2,6 +2,10 @@
 
 ![img1](https://github.com/user-attachments/assets/fab7b6cd-7c77-4603-bdde-f13a76132a64)
 
+
+![Alt text](Screenshot 2024-11-02 at 01.08.57.png)
+
+
 - 💡[Demo Project](https://sheydarj.github.io/musicplayer2/)
 
 -💗Developed by : Farnaz Darvish, Kosar Akbarshah , Danial Alborz , Sheyda Rajaee
