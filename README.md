@@ -3,7 +3,7 @@
 ![img1](https://github.com/Screenshot 2024-11-02 at 01.08.57.png)
 
 
-![Alt text](Screenshot 2024-11-02 at 01.08.57.png)
+![Alt text](/Screenshot 2024-11-02 at 01.08.57.png)
 
 
 - 💡[Demo Project](https://sheydarj.github.io/musicplayer2/)
