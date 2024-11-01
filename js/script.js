@@ -146,7 +146,6 @@ forwardBtn.addEventListener('click', () => {
         startCounter(audios[musicIndex+1].duration)
         audios[musicIndex].pause()
         musicIndex++
-        console.log(musicIndex);
         audios[musicIndex].play()
         playing = true;
         document.getElementById('music-name').innerHTML = audios[musicIndex].dataset.name;
@@ -189,9 +188,7 @@ audioList.forEach((li, index) => {
 
         getMinutes(audioDuration)
         startCounter(audioDuration)
-        // console.log('my audioooooooo', audio.item(index).buffered.start(0.2))
 
-        // Timer.innerHTML = audioDuration
 
         // hide ul list
         ul.classList.toggle('hidden')
@@ -209,11 +206,8 @@ audioList.forEach((li, index) => {
 
 
 function getMinutes(s) {
-    console.log(s, 'zamane duration')
     const minutes = Math.floor(s / 60)
-    console.log('minutes ', minutes)
     const second = Math.floor((((s / 60) - minutes) * 60))
-    console.log('second ', second)
     duration.innerText = `${minutes.toString()}:${second.toString()}`
 
 }
