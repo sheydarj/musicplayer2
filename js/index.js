@@ -27,19 +27,19 @@ const audioList = [
     {
         id: 'queen',
         title: 'THE ARRIVAL OF THE QUEEN OF SHEBA',
-        src: "./music/19.Solomon-ArrivaloftheQueenofSheba.mp3"
+        src: './music/01. HANDEL- THE ARRIVAL OF THE QUEEN OF SHEBA (Solomon).mp3',
     },
     {
         id: 'vivaldi',
         title: 'LE QUATTRO STAGIONI',
-        src: "./music/01SpringAllegro.mp3"
+        src: "./music/02. VIVALDI- LE QUATTRO STAGIONI- i. Allegro (Concerto No. 1 in E 'La primavera').mp3"
     },
 
     {
 
         id: 'mozart',
         title: 'HORN CONCERTO NO.4',
-        src: './music/2.HornConcertoNo.4RondoAllegrovivace.mp3',
+        src: './music/04. MOZART- HORN CONCERTO NO.4 IN E FLAT K495- iii. Rondo (Allegro vivace).mp3',
     }
 ]
 
