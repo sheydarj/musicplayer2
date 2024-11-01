@@ -10,6 +10,7 @@ const txt = document.getElementById('txt')
 // const audio = document.getElementById('audio')
 const timer = document.getElementById('playing-time')
 const duration = document.getElementById('music-duration')
+const seekbar = document.getElementById('seekbar');
 
 let mod = true;
 
@@ -116,6 +117,7 @@ function playPauseBtn() {
     if (audios[musicIndex].paused) {
         startInterval()
 
+        animateSeekBar(1000);
         audios[musicIndex].play()
         playBtn.style.display = 'none';
         pauseBtn.style.display = 'block';
@@ -140,6 +142,8 @@ forwardBtn.addEventListener('click', () => {
     //     })
     // }
     if (musicIndex + 1 < audios.length) {
+        getMinutes(audios[musicIndex+1].duration)
+        startCounter(audios[musicIndex+1].duration)
         audios[musicIndex].pause()
         musicIndex++
         console.log(musicIndex);
@@ -156,6 +160,9 @@ forwardBtn.addEventListener('click', () => {
 })
 rewindBtn.addEventListener('click', () => {
     if (musicIndex < audios.length && musicIndex > 0) {
+        getMinutes(audios[musicIndex-1].duration)
+        startCounter(audios[musicIndex-1].duration)
+        
         audios[musicIndex].pause()
         musicIndex--
         audios[musicIndex].play()
@@ -202,6 +209,7 @@ audioList.forEach((li, index) => {
 
 
 function getMinutes(s) {
+    console.log(s, 'zamane duration')
     const minutes = Math.floor(s / 60)
     console.log('minutes ', minutes)
     const second = Math.floor((((s / 60) - minutes) * 60))
@@ -232,6 +240,8 @@ function startCounter(s) {
 
 }
 
+let progress;
+
 function startInterval() {
     timerInterval = setInterval(() => {
         let current = audios[musicIndex].currentTime.toFixed(0)
@@ -243,19 +253,41 @@ function startInterval() {
 
 function resetTimer() {
     clearInterval(timerInterval);
-    timer.innerText = '00:00'; 
+    timer.innerText = '00:00';
 }
 
 function changeAudioSource(newSource) {
     newSource.currentTime = 0
-    resetTimer(); 
+    resetTimer();
 }
 
 
+function animateSeekBar(target) {
+    let start = 0;
+    const duration = audios[musicIndex]?.duration * 1000; // 2 seconds
+    let step = () => {
+        progress = Math.min(start + (performance.now() / duration) * 100, target);
+        seekbar.value = progress;
+        if (progress < target) {
+            requestAnimationFrame(step);
+        }
+    };
+    requestAnimationFrame(step);
+}
+
 window.onload = function () {
     let audio = document.getElementsByClassName('audio')
-    console.log("audioeeeee1111", audio)
     document.getElementById('music-name').innerHTML = audio.item(0).dataset.name;
     getMinutes(audio.item(0).duration)
 
 }
+
+// function animateSeekBar() {
+//     if (progress <= 100) {
+//         seekbar.value = progress;
+//         progress++;
+//         requestAnimationFrame(animateSeekBar);
+//     }
+// }
+
+
