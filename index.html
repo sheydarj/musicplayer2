@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <audio data-name="Ki Migire Jato" class="audio" id="kiMigireJato"
+        src="./music/Ki Migire Jato Roo Tanam Kaboodi Boosehato.mp3"></audio>
+    <audio data-name="MonoPlay" class="audio" id="MonoPlay"
+        src="./music/MonoPlay - Trust Me (Original Mix).mp3"></audio>
+    <audio data-name="Emma-Peters" class="audio" id="EmmaPeters" src="./music/Emma-Peters-Cocaina(320).mp3"></audio>
+    <audio data-name="Nf" class="audio" id="Nf" src="./music/Nf.mp3"></audio>
+
+    <section class="bg-[#ff564b] h-screen w-screen ">
+
+        <div class="relative w-[400px] m-auto">
+            <div class="pt-20 ">
+                <div class="flex w-[400px] bg-white justify-between  pt-4 pl-4 pr-4">
+                    <div>
+                        <i id="hamburger" class="text-2xl bi bi-list"></i>
+                    </div>
+                    <div>
+                        <a href=""> <i class=" text-[#959595] text-xl  bi bi-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="pic" class=" flex justify-center bg-white items-center w-[400px] m-auto  h-[280px]">
+                    <figure id="pic1">
+                        <img class="w-[300px] h-[280px]" src="img/image1.jpg" alt="">
+                    </figure>
+                </div>
+            </div>
+            <div id="txt" class="bg-gray-800 w-[400px] m-auto pb-4 pt-12">
+                <div id="music" class="text-center transition-all duration-200 ease-linear ">
+                    <h2 id="music-name" class="text-white text-xl "> music name </h2>
+                    <p class="text-sm text-[#777] "> music details </p>
+                </div>
+            </div>
+            <div class="bg-gray-800 w-[400px] m-auto ">
+                <div id="play" class="flex *:text-white justify-center items-center pt-4">
+                    <div class="relative flex flex-col justify-center items-center w-full">
+                        <div class="flex items-center">
+                            <i id="rewind" class="text-3xl mr-8 bi bi-rewind-fill"></i>
+                            <svg id="play-btn" onclick="playPauseBtn()" xmlns="http://www.w3.org/2000/svg" width="64"
+                                height="64" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                            </svg>
+
+                            <svg id="pause-btn" onclick="playPauseBtn()" style="display: none;"
+                                xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+                                class="bi bi-pause-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5" />
+                            </svg>
+                            <i id="forward" class="text-3xl ml-8 bi bi-fast-forward-fill"></i>
+                        </div>
+
+                        <div id="progress-bar"
+                            style=" width: 80%; height: 10px; background: #000; border-radius: 50px; margin-top: 10px;">
+                            <div id="progress"
+                                style="position: relative; display: flex; align-items: center; width: 0; height: 10px; background: #fff; border-radius: 50px;">
+                                <div id="progress-point"
+                                    style="position: absolute; right: -8px; width: 20px; height: 20px; background-color: black; border-radius: 50%; border: 6px solid white; pointer-events: none;">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="playing-time" style="position: absolute; top: 0; left: 15px;">00:00</p>
+                        <p id="music-duration" style="position: absolute; top: 0; right: 15px;">04:30</p>
+                    </div>
+                </div>
+                <div id="icon" class="flex *:text-[#6d6d6d] justify-around *:text-xl mt-20 pb-8">
+                    <i class="bi bi-suit-heart"></i>
+                    <i class="bi bi-shuffle"></i>
+                    <i class="bi bi-arrow-repeat"></i>
+                    <i class="bi bi-three-dots"></i>
+                </div>
+            </div>
+
+            <div>
+                <ul id="ul" class=" bg-black m-auto *:text-white w-[400px] hidden *:h-16 ">
+                    <li class="w-full flex justify-center items-center border-b-2">Ki Migire
+                        Jato</li>
+                    <li class="w-full flex justify-center items-center border-b-2">MonoPlay</li>
+                    <li class="w-full flex justify-center items-center border-b-2">EmmaPeters
+                    </li>
+                    <li class="w-full flex justify-center items-center border-b-2">Nf</li>
+
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+<!-- <script src="js/index.js"></script> -->
+<script src="./js/script.js"></script>
+<!-- <script src="./js/audio-controls.js"></script> -->
+
+</html>
