@@ -4,7 +4,7 @@
 
 - 💡[Demo Project](https://sheydarj.github.io/musicplayer2/)
 
--💗Developed by : Farnaz Darvish, Kosar Akbarshah , Danial Alborz ,
+-💗Developed by : Farnaz Darvish, Kosar Akbarshah , Danial Alborz , Sheyda Rajaee
 
 - 🕰️Created - 2024-11-02
 
