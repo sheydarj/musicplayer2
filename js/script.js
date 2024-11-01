@@ -223,7 +223,6 @@ function startCounter(s) {
         const seconds = String(secondsElapsed % 60).padStart(2, '0');
         timer.innerText = `${minutes}:${seconds}`;
 
-        // Stop the timer when audio ends
         if (secondsElapsed >= s) {
             clearInterval(timerInterval);
             audio.pause();
@@ -244,12 +243,12 @@ function startInterval() {
 
 function resetTimer() {
     clearInterval(timerInterval);
-    timer.innerText = '00:00'; // Reset display
+    timer.innerText = '00:00'; 
 }
 
 function changeAudioSource(newSource) {
     newSource.currentTime = 0
-    resetTimer(); // Reset timer for the new audio
+    resetTimer(); 
 }
 
 
@@ -258,7 +257,5 @@ window.onload = function () {
     console.log("audioeeeee1111", audio)
     document.getElementById('music-name').innerHTML = audio.item(0).dataset.name;
     getMinutes(audio.item(0).duration)
-    // addItem(item.title, item.src, item.id)
-
 
 }
